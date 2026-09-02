@@ -1,0 +1,12 @@
+# The config layer this bundle contributes: it inserts pocket's host half into the
+# Loader tree. Applied automatically when a profile lists this package
+# (see apps/cli/reference: dsh.profile.bundles).
+#
+# The plugin loads disabled: connecting a machine that can run bash to a public relay
+# is not something a profile should switch on behind the user's back. The settings page
+# is where they turn it on, and it stays visible while it is on.
+- insert:
+    - id: pocket
+      name: dsh-pocket
+      config:
+        enabled: false

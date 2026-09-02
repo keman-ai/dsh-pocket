@@ -1,0 +1,9 @@
+node_modules/
+*.tsbuildinfo
+.DS_Store
+
+# lib/ is committed **on purpose**: a clone must be installable without building first.
+# For git sources pnpm refuses to run prepare by default, so a package without build
+# output is missing its entry file and stops dsh from starting — skins in the market
+# have already been caught by this.
+# After changing code, run pnpm build and commit lib/ along with it.
