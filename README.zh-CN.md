@@ -11,8 +11,8 @@
 </p>
 
 <p align="center">
-  <a href="https://github.com/keman-ai/dsh-pocket"><img src="https://img.shields.io/github/stars/keman-ai/dsh-pocket?style=flat&label=Star&color=4D6BFE" alt="Stars"></a>
-  <a href="https://github.com/keman-ai/dsh-pocket/releases"><img src="https://img.shields.io/github/v/release/keman-ai/dsh-pocket?style=flat&label=release&color=08C" alt="Latest release"></a>
+  <a href="https://github.com/keman-ai/dsh-pocket"><img src="https://img.shields.io/github/stars/keman-ai/dsh-pocket?style=flat&label=Star&color=4D6BFE&cacheSeconds=300" alt="Stars"></a>
+  <a href="https://github.com/keman-ai/dsh-pocket/releases"><img src="https://img.shields.io/github/v/release/keman-ai/dsh-pocket?style=flat&label=release&color=08C&cacheSeconds=300" alt="Latest release"></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT-2EA44F?style=flat" alt="MIT License"></a>
 </p>
 
