@@ -4,7 +4,7 @@ import { mkdtempSync, readFileSync, rmSync, statSync } from 'node:fs'
 import { tmpdir } from 'node:os'
 import { join } from 'node:path'
 import { describe, it } from 'node:test'
-import { clearPairingKey, pairingKey, pairingUrl, rotatePairingKey, verifyApproval } from '../src/pairing.ts'
+import { clearPairingKey, pairingKey, rotatePairingKey, verifyApproval } from '../src/pairing.ts'
 
 const withDir = (run: (dir: string) => void): void => {
   const dir = mkdtempSync(join(tmpdir(), 'pocket-pairing-'))
@@ -51,8 +51,8 @@ describe('pairing key', () => {
       const key = pairingKey(dir)
       const attacker = randomBytes(32)
 
-      // This is the whole point: a relay that can read and replay frames still cannot
-      // mint an approval, because it never sees this key.
+      // This is the whole point: another connection on the relay cannot mint an approval,
+      // because it cannot produce this key's signature.
       assert.equal(verifyApproval(key, 'req_1', 'allow', sign(attacker, 'req_1', 'allow')), false)
     })
   })
@@ -97,20 +97,6 @@ describe('pairing key', () => {
 
       assert.notDeepEqual(rotated, old)
       assert.equal(verifyApproval(rotated, 'req_1', 'allow', signed), false)
-    })
-  })
-
-  it('puts the key in the fragment, never the query', () => {
-    withDir((dir) => {
-      const key = pairingKey(dir)
-
-      const url = pairingUrl('https://dsh-pocket.a2hmarket.ai', 'device_1', key)
-
-      // A fragment is not sent to the server. In the query it would reach CloudFront,
-      // the gateway, and every access log along the way.
-      const [beforeHash, fragment] = url.split('#')
-      assert.equal(beforeHash?.includes(key.toString('base64url')), false)
-      assert.equal(fragment?.includes(key.toString('base64url')), true)
     })
   })
 

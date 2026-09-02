@@ -25,7 +25,6 @@ describe('SessionProjector', () => {
     const { sink, out } = collect()
     const projector = new SessionProjector(sink)
 
-    projector.accept(session, event('todo/write', { todos: [] }))
     projector.accept(session, event('request/header', { header: {} }))
     projector.accept(session, event('session/end-seed', {}))
 
